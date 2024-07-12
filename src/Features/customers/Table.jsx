@@ -1,54 +1,105 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Customer from './Customer'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import Transactions from '../transactions/Transactions'
 import TransactionsHeader from '../transactions/TransactionsHeader'
 import TableRow from '../../ui/TableRow'
+import Filter from '../../ui/Filter'
+import { getCustomers } from '../../services/customersApi'
+import { getTransactions } from '../../services/transactionsApi'
+// import TableRow from './../../ui/TableRow';
 
 
 const StyledTable = styled.table`
 border: 1px solid black;
+border-radius: 8px;
 font-size: 20px;
 text-transform: capitalize;
 width: 100%;
 text-align: center;
 `
 
-const Tr = styled.tr`
-border: 1px solid black;
-
-
-`
 const Th = styled.th`
-padding:10px ;
-border: 1px solid black;
+padding:10px ;  
 `
 
 
-export default function Table({ allData }) {
-    const { customers, transactions } = allData
+
+export default function Table() {
+    const [searchParams, setSearchParams] = useSearchParams()
+
+    // const [customers, setCustomers] = useState([])
+    // const [transactions, setTransactions] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
+
+    const [tables, setTables] = useState([])
+    const [filter, setFilter] = useState({ name: '', amount: '' });
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setIsLoading(true)
+            const customersData = await getCustomers()
+            const transacitonsData = await getTransactions()
+            setTables({ transactions: transacitonsData, customers: customersData })
+            setIsLoading(false)
+        }
+        fetchData()
+    }, [])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    if (isLoading) return <div>loaaaaaaaaading</div>
+
+
+
+
+
 
 
     return (
-        <StyledTable>
-            <thead>
-                <Th>Customer id</Th>
-                <Th>Customer Name</Th>
-                <Th>Transactions id</Th>
-                <Th>Transactions Amout</Th>
-            </thead>
-            <tbody>
-                {
-                    customers?.map(customer =>
-                        <TableRow customer={customer} transactionId={customer.id} />
-                    )
-                }
+        <>
+            <Filter filter={filter} setFilter={setFilter} />
+            <StyledTable>
+                <thead >
+                    <Th>Customer id</Th>
+                    <Th>Customer Name</Th>
+                    <Th>Transactions id</Th>
+                    <Th>Transactions Amout</Th>
+                </thead>
+                <tbody>
 
-            </tbody>
+                    {
+
+                        tables.customers?.map(customer =>
+                            <TableRow tables={tables} filter={filter} customer={customer} />
+                        )
+                    }
+
+                </tbody>
 
 
 
-        </StyledTable>
+            </StyledTable>
+        </>
     )
 }

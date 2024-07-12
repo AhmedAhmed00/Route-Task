@@ -2,24 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { useParams, useSearchParams } from 'react-router-dom'
 import { getTransactions } from '../../services/transactionsApi'
 
-export default function Transactions({ transactionId }) {
-    // const { transactionId } = useParams()
-    // // const [searchParams, setSearchParams] = useSearchParams()
-    const [isLoading, setIsLoading] = useState(false)
-    const [transactions, setTransactions] = useState([])
-    useEffect(() => {
-        const fetchTransactions = async () => {
-            setIsLoading(true)
-            const data = await getTransactions(transactionId)
-            setIsLoading(false)
-            setTransactions(data)
-            console.log(transactions);
-        }
-        fetchTransactions()
+export default function Transactions({ transactions }) {
 
-    }, [])
 
-    if (isLoading) return <div>loaaaaaaaaaaading trans</div>
+    // console.log(transaction);
+
+
 
 
     return (
@@ -45,7 +33,11 @@ export default function Transactions({ transactionId }) {
                             </>)
                     }
 
+                    {/* <li>total : {transactions.reduce((acc, item) => { return acc + item.amount }, 0)}</li> */}
                 </ul>
+            </td>
+            <td>
+                show More Details
             </td>
 
         </>

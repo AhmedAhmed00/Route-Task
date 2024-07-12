@@ -10,6 +10,9 @@ li{
     padding: 4px;
     
 }
+table {
+  border-collapse: collapse;
+}
 
 }
 `

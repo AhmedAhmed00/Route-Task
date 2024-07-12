@@ -11,28 +11,6 @@ import GlobalStyles from "./styles/styles"
 
 function App() {
 
-  const [costumers, setCustomers] = useState([])
-  const [transactions, setTransactions] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
-  const [allData, setAllData] = useState({})
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true)
-
-      const customersData = await getCustomers()
-      const transacitonsData = await getTransactions()
-      setTransactions(transacitonsData)
-      setAllData({ transacionts: transacitonsData, customers: customersData })
-      setIsLoading(false)
-    }
-    fetchData()
-
-
-  }, [])
-
-  if (isLoading) return <div>loaaaaaaaaading</div>
-
 
 
 
@@ -43,7 +21,7 @@ function App() {
     <BrowserRouter>
       <GlobalStyles />
       <Routes>
-        <Route index element={<Table allData={allData} />} />
+        <Route index element={<Table />} />
         <Route path="/transactions/:transactionId" element={<Transactions />} />
       </Routes>
     </BrowserRouter>
