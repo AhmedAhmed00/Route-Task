@@ -1,35 +1,61 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react"
+import { getCustomers } from "./services/customersApi"
+import { getTransactions } from "./services/transactionsApi"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import Transactions from "./Features/transactions/Transactions"
+import Table from "./Features/customers/Table"
+import GlobalStyles from "./styles/styles"
+
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [costumers, setCustomers] = useState([])
+  const [transactions, setTransactions] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [allData, setAllData] = useState({})
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true)
+
+      const customersData = await getCustomers()
+      const transacitonsData = await getTransactions()
+      setTransactions(transacitonsData)
+      setAllData({ transacionts: transacitonsData, customers: customersData })
+      setIsLoading(false)
+    }
+    fetchData()
+
+
+  }, [])
+
+  if (isLoading) return <div>loaaaaaaaaading</div>
+
+
+
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+
+
+
+    <BrowserRouter>
+      <GlobalStyles />
+      <Routes>
+        <Route index element={<Table allData={allData} />} />
+        <Route path="/transactions/:transactionId" element={<Transactions />} />
+      </Routes>
+    </BrowserRouter>
+
+
   )
+
+
+
+
+
+
 }
 
 export default App
