@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react"
-import { getCustomers } from "./services/customersApi"
-import { getTransactions } from "./services/transactionsApi"
+
+
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import Transactions from "./Features/transactions/Transactions"
 import Table from "./Features/customers/Table"
 import GlobalStyles from "./styles/styles"
+import CustomerStats from "./Features/customers/CustomerStats"
 
 
 
@@ -22,7 +21,7 @@ function App() {
       <GlobalStyles />
       <Routes>
         <Route index element={<Table />} />
-        <Route path="/transactions/:transactionId" element={<Transactions />} />
+        <Route path="/customerStats/:customerID" element={<CustomerStats />} />
       </Routes>
     </BrowserRouter>
 

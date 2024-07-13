@@ -1,10 +1,10 @@
 
 
-export async function getTransactions(amount) {
+export async function getTransactions(id) {
 
     let query = "http://localhost:9000/transactions?"
-    // if (id) query += `customer_id=${id}`
-    if (amount) query += `amount=${amount}`
+    if (id) query += `customer_id=${id}`
+    // if (amount) query += `amount=${amount}`
 
     const res = await fetch(query)
     const data = await res.json()

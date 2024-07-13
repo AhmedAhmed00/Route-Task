@@ -16,6 +16,7 @@ export default function Customer({ customer }) {
         <>
             <td>{id}</td>
             <td>{name}</td>
+
         </>
 
 

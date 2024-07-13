@@ -1,11 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import { useParams, useSearchParams } from 'react-router-dom'
-import { getTransactions } from '../../services/transactionsApi'
+import { formatDate, formatPrice } from '../../utilities/helpers'
 
 export default function Transactions({ transactions }) {
 
-
-    // console.log(transaction);
 
 
 
@@ -29,16 +25,29 @@ export default function Transactions({ transactions }) {
                     {
                         transactions?.map(transaction =>
                             <>
-                                <li>{transaction.amount}</li>
+                                <li>{formatPrice(transaction.amount)}</li>
+
+                            </>)
+                    }
+
+                </ul>
+
+            </td>
+            <td>
+                <ul>
+                    {
+                        transactions?.map(transaction =>
+                            <>
+                                <li>{formatDate(transaction.date)}</li>
+
                             </>)
                     }
 
                     {/* <li>total : {transactions.reduce((acc, item) => { return acc + item.amount }, 0)}</li> */}
                 </ul>
+
             </td>
-            <td>
-                show More Details
-            </td>
+
 
         </>
 

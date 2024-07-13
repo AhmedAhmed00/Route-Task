@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import Customer from './Customer'
-import { useNavigate, useSearchParams } from 'react-router-dom'
-import Transactions from '../transactions/Transactions'
-import TransactionsHeader from '../transactions/TransactionsHeader'
 import TableRow from '../../ui/TableRow'
 import Filter from '../../ui/Filter'
 import { getCustomers } from '../../services/customersApi'
 import { getTransactions } from '../../services/transactionsApi'
-// import TableRow from './../../ui/TableRow';
 
 
 const StyledTable = styled.table`
@@ -27,12 +22,10 @@ padding:10px ;
 
 
 export default function Table() {
-    const [searchParams, setSearchParams] = useSearchParams()
 
-    // const [customers, setCustomers] = useState([])
-    // const [transactions, setTransactions] = useState([])
+
+
     const [isLoading, setIsLoading] = useState(false)
-
     const [tables, setTables] = useState([])
     const [filter, setFilter] = useState({ name: '', amount: '' });
 
@@ -50,30 +43,7 @@ export default function Table() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     if (isLoading) return <div>loaaaaaaaaading</div>
-
-
-
-
-
 
 
     return (
@@ -87,11 +57,9 @@ export default function Table() {
                     <Th>Transactions Amout</Th>
                 </thead>
                 <tbody>
-
                     {
-
                         tables.customers?.map(customer =>
-                            <TableRow tables={tables} filter={filter} customer={customer} />
+                            <TableRow customerTransacions={tables.transactions} filter={filter} customer={customer} />
                         )
                     }
 
