@@ -7,13 +7,9 @@ import { Link } from 'react-router-dom';
 
 
 
-const StyledTableRow = styled.tr`
-    border: 1px solid black;
-    cursor: pointer;
-    &:hover { 
-        background-color: #698474;
-        color: white;
-    }
+export const StyledTableRow = styled.tr`
+    border: 1px solid #e5e7eb ;
+    background-color: white;
 `;
 
 
@@ -43,10 +39,8 @@ export default function TableRow({ customer, customerTransacions, filter }) {
                     <Customer customer={customer} />
                     <Transactions transactions={filteredTransactions} />
                     <td>
-
-                        <Link to={`customerStats/${customer.id}`}>Customer Statistics</Link>
+                        <Link to={`customerStats/${customer.id}`}>Show Statistics</Link>
                     </td>
-
                 </>
 
             )}

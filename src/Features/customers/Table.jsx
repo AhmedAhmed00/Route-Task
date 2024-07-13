@@ -1,22 +1,25 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import TableRow from '../../ui/TableRow'
 import Filter from '../../ui/Filter'
-import { getCustomers } from '../../services/customersApi'
-import { getTransactions } from '../../services/transactionsApi'
+import Heading from '../../ui/Heading'
+import useDb from '../hooks/useDb'
 
 
-const StyledTable = styled.table`
-border: 1px solid black;
-border-radius: 8px;
-font-size: 20px;
+export const StyledTable = styled.table`
 text-transform: capitalize;
 width: 100%;
 text-align: center;
+border: 2px solid #e5e7eb;
+border-radius: 20px;
+border-collapse: separate;
+border-spacing: 0px 3px;
+background-color: #f9fafb;
 `
 
-const Th = styled.th`
-padding:10px ;  
+export const Th = styled.th`
+padding:20px  ; 
+
 `
 
 
@@ -25,43 +28,40 @@ export default function Table() {
 
 
 
-    const [isLoading, setIsLoading] = useState(false)
-    const [tables, setTables] = useState([])
+
     const [filter, setFilter] = useState({ name: '', amount: '' });
 
-
-    useEffect(() => {
-        const fetchData = async () => {
-            setIsLoading(true)
-            const customersData = await getCustomers()
-            const transacitonsData = await getTransactions()
-            setTables({ transactions: transacitonsData, customers: customersData })
-            setIsLoading(false)
-        }
-        fetchData()
-    }, [])
-
+    const { isLoading, tables } = useDb()
 
 
     if (isLoading) return <div>loaaaaaaaaading</div>
 
+    const { customers, transactions } = tables
+
 
     return (
         <>
+            <Heading customers={customers} transactions={transactions} />
             <Filter filter={filter} setFilter={setFilter} />
             <StyledTable>
-                <thead >
-                    <Th>Customer id</Th>
-                    <Th>Customer Name</Th>
-                    <Th>Transactions id</Th>
-                    <Th>Transactions Amout</Th>
+                <thead>
+                    <tr>
+                        <Th>Customer id</Th>
+                        <Th>Customer Name</Th>
+                        <Th>Transactions id</Th>
+                        <Th>Transactions Amout</Th>
+                        <Th>Transactions Date</Th>
+                        <Th>More Details</Th>
+                    </tr>
                 </thead>
                 <tbody>
-                    {
-                        tables.customers?.map(customer =>
-                            <TableRow customerTransacions={tables.transactions} filter={filter} customer={customer} />
-                        )
-                    }
+                    <>
+                        {
+                            tables.customers?.map(customer =>
+                                <TableRow customerTransacions={tables.transactions} filter={filter} customer={customer} />
+                            )
+                        }
+                    </>
 
                 </tbody>
 

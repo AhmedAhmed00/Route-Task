@@ -36,6 +36,12 @@
       "amount": 4000
     },
     {
+      "id": 3,
+      "customer_id": 1,
+      "date": "2022-03-04",
+      "amount": 8000
+    },
+    {
       "id": 10,
       "customer_id": 1,
       "date": "2022-01-02",
@@ -82,6 +88,24 @@
       "id": 9,
       "customer_id": 5,
       "date": "2022-01-02",
+      "amount": 875
+    },
+    {
+      "id": 99,
+      "customer_id": 5,
+      "date": "2022-06-02",
+      "amount": 875
+    },
+    {
+      "id": 33,
+      "customer_id": 3,
+      "date": "2023-06-02",
+      "amount": 875
+    },
+    {
+      "id": 122,
+      "customer_id": 3,
+      "date": "2024-06-09",
       "amount": 875
     }
   ]

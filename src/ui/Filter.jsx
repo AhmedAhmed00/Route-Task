@@ -1,25 +1,50 @@
 import React from 'react'
-import { useSearchParams } from 'react-router-dom'
+import styled from 'styled-components'
+
+
+
+
+
+const StyledFilter = styled.div`
+display: flex;
+justify-content: center;
+gap: 10px;
+margin-bottom: 20px;
+`
+
+
+const Input = styled.input`
+
+padding: 10px;
+width: 50%;
+font-size: 16px;
+border-radius: 10px;
+border: 1px solid #707FDD;
+outline: none;
+
+`
+
+
+
+
+
+
 
 export default function Filter({ filter, setFilter }) {
-    const [searchParams, setSearchParams] = useSearchParams()
     function handleNameChange(e) {
         setFilter({ ...filter, name: e.target.value }
         )
-        // searchParams.set("name", e.target.value)
-        // setSearchParams(searchParams)
     }
     function handleAmountChange(e) {
         setFilter({ ...filter, amount: e.target.value }
         )
-        // searchParams.set("amount", e.target.value)
-        // setSearchParams(searchParams)
+
     }
 
     return (
-        <div>
-            <input onChange={handleAmountChange} type="text" placeholder='filter By Amount' />
-            <input onChange={handleNameChange} type="text" placeholder='filter by name' />
-        </div>
+        <StyledFilter>
+            <Input onChange={handleAmountChange} type="text" placeholder='Filter by Amount' />
+            <Input onChange={handleNameChange} type="text" placeholder='Filter by name' />
+        </StyledFilter>
     )
 }

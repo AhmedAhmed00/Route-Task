@@ -43,7 +43,6 @@ export default function Transactions({ transactions }) {
                             </>)
                     }
 
-                    {/* <li>total : {transactions.reduce((acc, item) => { return acc + item.amount }, 0)}</li> */}
                 </ul>
 
             </td>
