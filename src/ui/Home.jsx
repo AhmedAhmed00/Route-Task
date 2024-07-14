@@ -44,7 +44,6 @@ export default function Home() {
                     <>
                         {
                             customers?.map(customer =>
-
                                 <TableRow key={customer.id} customerTransacions={transactions} filter={filter} customer={customer} />
                             )
                         }
