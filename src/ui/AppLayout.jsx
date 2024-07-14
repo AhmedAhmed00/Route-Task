@@ -1,14 +1,12 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 import styled from 'styled-components'
-import Heading from './Heading';
-import Filter from './Filter';
-import useDb from './../Features/hooks/useDb';
-import { useState } from "react";
 
 
 const StyledAppLayout = styled.main`
-max-width: 1220px;
+max-width: 1320px;
+min-height: 100vh;
+padding: 30px 0px;
 margin: auto;
 
 `

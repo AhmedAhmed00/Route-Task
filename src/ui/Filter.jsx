@@ -4,11 +4,11 @@ import styled from 'styled-components'
 
 
 
-
 const StyledFilter = styled.div`
 display: flex;
 justify-content: center;
 gap: 10px;
+
 margin-bottom: 20px;
 `
 
@@ -19,6 +19,7 @@ padding: 10px;
 width: 50%;
 font-size: 16px;
 border-radius: 10px;
+box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 border: 1px solid #707FDD;
 outline: none;
 

@@ -1,15 +1,12 @@
 
 
-
-
-
-
 export function formatDate(dateStr) {
     return new Intl.DateTimeFormat("en", {
         day: "numeric",
         month: "short",
         hour: "2-digit",
         minute: "2-digit",
+        year: "numeric",
     }).format(new Date(dateStr));
 }
 
@@ -18,11 +15,14 @@ export function formatPrice(price) {
     price = new Intl.NumberFormat('en', {
         style: "currency",
         currency: "EGP",
-        maximumFractionDigits: "0"
+        maximumFractionDigits: "",
+
     }).format(price)
     return price
 
 }
+
+
 
 
 export const sumAmountsByDate = (transactions) => {
