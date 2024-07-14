@@ -3,7 +3,7 @@
 export async function getTransactions(id) {
 
     // let query = "http://localhost:9000/transactions?"
-    let query = "https://my-json-server.typicode.com/ahmedahmed00/customerTransactionsApi/transactions?"
+    let query = "https://my-json-server.typicode.com/ahmedahmed00/customerTransactionsApi/transactions"
     if (id) query += `?customer_id=${id}`
     // if (amount) query += `amount=${amount}`
 
