@@ -21,8 +21,8 @@ This is a mini web application that retrieves customer and transaction data from
 
 Check out the live demo of the application:
 
-- [Live Demo 1](#https://route-task-seven.vercel.app/)
-- [Live Demo 2](#https://customer-transactions1.netlify.app/)
+- [Live Demo 1](https://route-task-seven.vercel.app/)
+- [Live Demo 2](https://customer-transactions1.netlify.app/)
 
 ## Built With
 
